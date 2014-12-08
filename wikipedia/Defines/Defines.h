@@ -76,5 +76,3 @@
 // to do separate non-performant request to get descriptions.
 #define ENABLE_FULL_TEXT_SEARCH NO
 #define ENABLE_WIKIDATA_DESCRIPTIONS NO
-
-
