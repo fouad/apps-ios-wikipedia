@@ -70,6 +70,7 @@
 		04530AF51935BF4D00022512 /* ModalMenuAndContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04530AF41935BF4D00022512 /* ModalMenuAndContentViewController.m */; };
 		04530AF81935C07500022512 /* ModalContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04530AF71935C07500022512 /* ModalContentViewController.m */; };
 		04530AFB1935C2B500022512 /* EmptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04530AFA1935C2B500022512 /* EmptySegue.m */; };
+		045374881A35834D00CE1A56 /* LeadImageAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 045374871A35834D00CE1A56 /* LeadImageAttributedString.m */; };
 		045A9F0D18F6090E0057EA85 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 045A9F0C18F6090E0057EA85 /* assets */; };
 		045D872119FAD2FA0035C1F9 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045D872019FAD2FA0035C1F9 /* AboutViewController.m */; };
 		045EFF1A19A25FEB00D0EDBB /* logo-placeholder-search.png in Resources */ = {isa = PBXBuildFile; fileRef = 045EFF1819A25FEB00D0EDBB /* logo-placeholder-search.png */; };
@@ -175,6 +176,9 @@
 		04D34DE11868E21F00610A87 /* Article+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D34DE01868E21F00610A87 /* Article+Convenience.m */; };
 		04DB0BEA18BD37F900B4BCF3 /* UIScrollView+ScrollSubviewToLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB0BE918BD37F900B4BCF3 /* UIScrollView+ScrollSubviewToLocation.m */; };
 		04DD89B118BFE63A00DD5DAD /* PreviewAndSaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DD89B018BFE63A00DD5DAD /* PreviewAndSaveViewController.m */; };
+		04E106341A3560030046DC27 /* LeadImageContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E106321A3560030046DC27 /* LeadImageContainer.m */; };
+		04E106351A3560030046DC27 /* LeadImageContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E106331A3560030046DC27 /* LeadImageContainer.xib */; };
+		04E106381A3560A90046DC27 /* LeadImageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E106371A3560A90046DC27 /* LeadImageLabel.m */; };
 		04EDEE251A20788700798076 /* SearchResultPrototypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04EDEE241A20788600798076 /* SearchResultPrototypeView.xib */; };
 		04EDEE2A1A215DBC00798076 /* UITableView+DynamicCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EDEE291A215DBC00798076 /* UITableView+DynamicCellHeight.m */; };
 		04EDEE311A21CB4100798076 /* UIScreen+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EDEE301A21CB4100798076 /* UIScreen+Extras.m */; };
@@ -395,6 +399,8 @@
 		04530AF71935C07500022512 /* ModalContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalContentViewController.m; sourceTree = "<group>"; };
 		04530AF91935C2B500022512 /* EmptySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptySegue.h; sourceTree = "<group>"; };
 		04530AFA1935C2B500022512 /* EmptySegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptySegue.m; sourceTree = "<group>"; };
+		045374861A35834D00CE1A56 /* LeadImageAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeadImageAttributedString.h; sourceTree = "<group>"; };
+		045374871A35834D00CE1A56 /* LeadImageAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadImageAttributedString.m; sourceTree = "<group>"; };
 		045A9F0C18F6090E0057EA85 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		045D871F19FAD2FA0035C1F9 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		045D872019FAD2FA0035C1F9 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -589,6 +595,11 @@
 		04DB0BE918BD37F900B4BCF3 /* UIScrollView+ScrollSubviewToLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ScrollSubviewToLocation.m"; sourceTree = "<group>"; };
 		04DD89AF18BFE63A00DD5DAD /* PreviewAndSaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewAndSaveViewController.h; sourceTree = "<group>"; };
 		04DD89B018BFE63A00DD5DAD /* PreviewAndSaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PreviewAndSaveViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		04E106311A3560030046DC27 /* LeadImageContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeadImageContainer.h; sourceTree = "<group>"; };
+		04E106321A3560030046DC27 /* LeadImageContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadImageContainer.m; sourceTree = "<group>"; };
+		04E106331A3560030046DC27 /* LeadImageContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeadImageContainer.xib; sourceTree = "<group>"; };
+		04E106361A3560A90046DC27 /* LeadImageLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeadImageLabel.h; sourceTree = "<group>"; };
+		04E106371A3560A90046DC27 /* LeadImageLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadImageLabel.m; sourceTree = "<group>"; };
 		04E9A78218F73C7200F7ECF7 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		04EDEE241A20788600798076 /* SearchResultPrototypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultPrototypeView.xib; sourceTree = "<group>"; };
 		04EDEE281A215DBC00798076 /* UITableView+DynamicCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+DynamicCellHeight.h"; sourceTree = "<group>"; };
@@ -1366,6 +1377,7 @@
 				0447861F185145090050563B /* History */,
 				041A3B5718E11ED90079FF1C /* Languages */,
 				0449E63218A9844000D51524 /* Login */,
+				04E106301A3560030046DC27 /* LeadImage */,
 				04530AF21935BF2900022512 /* ModalOverlay */,
 				042A5B1419253D2A0095E172 /* Navigation */,
 				0485FEC71994CF8800141361 /* Nearby */,
@@ -1549,6 +1561,20 @@
 				04B0EA49190B2348007458AF /* PreviewLicenseView.m */,
 			);
 			path = Preview;
+			sourceTree = "<group>";
+		};
+		04E106301A3560030046DC27 /* LeadImage */ = {
+			isa = PBXGroup;
+			children = (
+				04E106331A3560030046DC27 /* LeadImageContainer.xib */,
+				04E106311A3560030046DC27 /* LeadImageContainer.h */,
+				04E106321A3560030046DC27 /* LeadImageContainer.m */,
+				04E106361A3560A90046DC27 /* LeadImageLabel.h */,
+				04E106371A3560A90046DC27 /* LeadImageLabel.m */,
+				045374861A35834D00CE1A56 /* LeadImageAttributedString.h */,
+				045374871A35834D00CE1A56 /* LeadImageAttributedString.m */,
+			);
+			path = LeadImage;
 			sourceTree = "<group>";
 		};
 		04EA7779184E4CED00D2F3C9 /* Model */ = {
@@ -1980,6 +2006,7 @@
 				04B0EA47190B2319007458AF /* PreviewLicenseView.xib in Resources */,
 				04CCCFEF1935093A00E3F60C /* SecondaryMenuRowView.xib in Resources */,
 				04D3082B19991CB60034F106 /* logo-placeholder-nearby.png in Resources */,
+				04E106351A3560030046DC27 /* LeadImageContainer.xib in Resources */,
 				D4C16A6819709CDF00CD91AD /* (null) in Resources */,
 				047E74141860509000916964 /* SavedPagesResultPrototypeView.xib in Resources */,
 				04123630189C29EA00E0CF8E /* abuse-filter-disallowed@2x.png in Resources */,
@@ -2019,7 +2046,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "scripts/make-css-assets.bash";
+			shellScript = "#scripts/make-css-assets.bash";
 		};
 		04272E7619404CDF00CC682F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2049,7 +2076,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "scripts/icon-svgs-to-pngs.sh";
+			shellScript = "#scripts/icon-svgs-to-pngs.sh";
 		};
 		048702AE19F75B0800B7D307 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2077,7 +2104,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "scripts/update-storyboard-strings.php";
+			shellScript = "#scripts/update-storyboard-strings.php";
 		};
 		D4C16A631970949A00CD91AD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2093,7 +2120,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "scripts/update-qqq.php";
+			shellScript = "#scripts/update-qqq.php";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2146,6 +2173,7 @@
 				043F18E518D9691D00D8489A /* UINavigationController+TopActionSheet.m in Sources */,
 				04414DDF1A1420EB00A41B4E /* WikiDataShortDescriptionFetcher.m in Sources */,
 				04D308281998A8AA0034F106 /* NearbyThumbnailView.m in Sources */,
+				045374881A35834D00CE1A56 /* LeadImageAttributedString.m in Sources */,
 				04292FF2185FBA70002A13FC /* SearchResultCell.m in Sources */,
 				04F0E2EA186EDC1A00468738 /* UIWebView+ElementLocation.m in Sources */,
 				0447866F1852B5010050563B /* SessionSingleton.m in Sources */,
@@ -2180,6 +2208,7 @@
 				D42E75EB18D11237002EA7E5 /* MWLanguageInfo.m in Sources */,
 				043F8BF21A11699A00D1AE44 /* UIView+RoundCorners.m in Sources */,
 				04A81E8618871EB000EEBADB /* MWKSection+ImageRecords.m in Sources */,
+				04E106341A3560030046DC27 /* LeadImageContainer.m in Sources */,
 				0487048019F8262600B7D307 /* AccountLogin.m in Sources */,
 				047FF5471889078C009DB293 /* Image+Convenience.m in Sources */,
 				04D149DD18877343006B4104 /* AlertLabel.m in Sources */,
@@ -2217,6 +2246,7 @@
 				04CCA0C319830A44000E982A /* ReferenceVC.m in Sources */,
 				04B91AB718E4D5B200FFAA1C /* TabularScrollView.m in Sources */,
 				04C695D218ED213000D9F2DA /* UIScrollView+NoHorizontalScrolling.m in Sources */,
+				04E106381A3560A90046DC27 /* LeadImageLabel.m in Sources */,
 				04F0E2EE186FB2D100468738 /* TOCSectionCellView.m in Sources */,
 				04D122321899B8AC006B9A30 /* AlertWebView.m in Sources */,
 				04C0A0781936786000D55325 /* UIViewController+ModalPresent.m in Sources */,

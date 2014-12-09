@@ -58,6 +58,7 @@
 #import "SearchResultsController.h"
 #import "ArticleFetcher.h"
 #import "AssetsFileFetcher.h"
+#import "LeadImageContainer.h"
 
 //#import "UIView+Debugging.h"
 
@@ -130,6 +131,10 @@
 
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UIView *activityIndicatorBackgroundView;
+
+@property (strong, nonatomic) LeadImageContainer *leadImageContainer;
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *webViewBottomConstraint;
 
 @end
 
@@ -270,6 +275,8 @@
     [self tocUpdateViewLayout];
     
     [self loadingIndicatorAdd];
+
+    [self setupLeadImageContainer];
 }
 
 -(void)jumpToFragmentIfNecessary
@@ -569,6 +576,8 @@
                                                     color: tocButton.label.color
                                                      size: tocButton.label.size
                                            baselineOffset: tocButton.label.baselineOffset];
+
+                             self.webViewBottomConstraint.constant = 0;
                          }];
     }
 }
@@ -577,85 +586,57 @@
 {
     if ([self tocDrawerIsOpen]) return;
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock: ^ {
-        
-        self.unsafeToToggleTOC = YES;
-        
-        // Hide any alerts immediately.
-        [self hideAlert];
-        
-        [self.tocVC willShow];
-        
-        [self tocUpdateViewLayout];
-        [self.view layoutIfNeeded];
 
-        [UIView animateWithDuration: duration.floatValue
-                              delay: 0.0f
-                            options: UIViewAnimationOptionBeginFromCurrentState
-                         animations: ^{
-                             self.scrollIndicatorView.alpha = 0.0;
-                             self.bottomMenuHidden = YES;
-                             self.referencesHidden = YES;
+    // When the TOC is shown, the self.webView.scrollView.transform is changed, but this
+    // causes the height of the scrollView to be reduced, which doesn't mess anything up
+    // visually, but does cause the area beneath the scrollView to no longer respond to
+    // drag events. Turn on border for scrollView to see this (and comment out call
+    // webViewBottomConstraint adjustment below). So here the web view's bottom
+    // constraint is shifted down while TOC is onscreen.
+    CGFloat webViewScale = [self tocGetWebViewScaleWhenTOCVisible];
+    CGFloat f = self.webView.frame.size.height + (self.webView.frame.size.height * webViewScale);
+    self.webViewBottomConstraint.constant = f;
 
-                             CGFloat webViewScale = [self tocGetWebViewScaleWhenTOCVisible];
-                             CGAffineTransform xf = CGAffineTransformMakeScale(webViewScale, webViewScale);
-
-                             self.webView.scrollView.transform = xf;
-                             self.referencesContainerView.transform = xf;
-                             self.bottomBarView.transform = xf;
-
-                             CGFloat tocWidth = [self tocGetWidthForWebViewScale:webViewScale];
-                             self.tocViewLeadingConstraint.constant = -tocWidth;
-
-                             // Scroll down by one pixel during the animation. This is a hack fix to cause
-                             // the web scroll view to not sometimes have a small bit of blank white space
-                             // at the bottom after this toc show animation finishes.
-                             self.webView.scrollView.contentOffset =
-                                 CGPointMake(
-                                     self.webView.scrollView.contentOffset.x,
-                                     self.webView.scrollView.contentOffset.y - 1.0
-                                 );
-
-                             [self.view layoutIfNeeded];
-                             
-                         }completion: ^(BOOL done){
-                             self.unsafeToToggleTOC = NO;
-                             
-                             WikiGlyphButton *tocButton = [ROOT.topMenuViewController getNavBarItem:NAVBAR_BUTTON_TOC];
-                             [tocButton.label setWikiText: IOS_WIKIGLYPH_TOC_EXPANDED
-                                                    color: tocButton.label.color
-                                                     size: tocButton.label.size
-                                           baselineOffset: tocButton.label.baselineOffset];
-                         }];
-    }];
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [self increaseWebViewScrollViewHeight];
     
-    // See: http://stackoverflow.com/a/17419858
-    [self.view layoutSubviews];
-}
+    self.unsafeToToggleTOC = YES;
+    
+    // Hide any alerts immediately.
+    [self hideAlert];
+    
+    [self.tocVC willShow];
+    
+    [self tocUpdateViewLayout];
+    [self.view layoutIfNeeded];
 
--(void)increaseWebViewScrollViewHeight
-{
-    // Reminder: can't do this when isDragging or isDecelerating
-    // because pull to refresh won't work.
-    if (!self.webView.scrollView.isDragging && !self.webView.scrollView.isDecelerating) {
-        // When the TOC is shown, the self.webView.scrollView.transform is changed, but this
-        // causes the height of the scrollView to be reduced, which doesn't mess anything up
-        // visually, but does cause the area beneath the scrollView to no longer respond to
-        // drag events. Turn on border for scrollView to see this (and comment out call to
-        // this method). So here *only* the scrollView's height is updated.
-        self.webView.scrollView.frame =
-        CGRectMake(
-                   self.webView.scrollView.frame.origin.x,
-                   self.webView.scrollView.frame.origin.y,
-                   self.webView.scrollView.frame.size.width,
-                   self.webView.frame.size.height
-                   );
-    }
+    [UIView animateWithDuration: duration.floatValue
+                          delay: 0.0f
+                        options: UIViewAnimationOptionBeginFromCurrentState
+                     animations: ^{
+                         self.scrollIndicatorView.alpha = 0.0;
+                         self.bottomMenuHidden = YES;
+                         self.referencesHidden = YES;
+
+                         CGFloat webViewScale = [self tocGetWebViewScaleWhenTOCVisible];
+                         CGAffineTransform xf = CGAffineTransformMakeScale(webViewScale, webViewScale);
+
+                         self.webView.scrollView.transform = xf;
+                         self.referencesContainerView.transform = xf;
+                         self.bottomBarView.transform = xf;
+
+                         CGFloat tocWidth = [self tocGetWidthForWebViewScale:webViewScale];
+                         self.tocViewLeadingConstraint.constant = -tocWidth;
+
+                         [self.view layoutIfNeeded];
+                         
+                     }completion: ^(BOOL done){
+                         self.unsafeToToggleTOC = NO;
+                         
+                         WikiGlyphButton *tocButton = [ROOT.topMenuViewController getNavBarItem:NAVBAR_BUTTON_TOC];
+                         [tocButton.label setWikiText: IOS_WIKIGLYPH_TOC_EXPANDED
+                                                color: tocButton.label.color
+                                                 size: tocButton.label.size
+                                       baselineOffset: tocButton.label.baselineOffset];
+                     }];
 }
 
 -(void)tocHide
@@ -837,6 +818,10 @@
     // because the current section is the one intersecting the top of the screen.)
 
     point.y += 2;
+
+    if ([elementId isEqualToString:@"section_heading_and_content_block_0"]) {
+        point = CGPointZero;
+    }
     
     [self tocScrollWebViewToPoint:point
                          duration:duration
@@ -1721,6 +1706,8 @@
     
     [self.bridge loadHTML:htmlStr withAssetsFile:@"index.html"];
 
+    [self.leadImageContainer showLeadImageForCurrentArticle];
+
     // NSLog(@"languageInfo = %@", languageInfo.code);
     [self.bridge sendMessage: @"setLanguage"
                  withPayload: @{
@@ -2092,6 +2079,8 @@
     //[self tocHideWithDuration:@0.0f];
 
     [self updateReferencesHeightAndBottomConstraints];
+    
+    [self.leadImageContainer updateHeightOfLeadImageContainerAndDiv];
 }
 
 -(BOOL)didFindReferencesInPayload:(NSDictionary *)payload
@@ -2273,6 +2262,43 @@
                      }
                      completion:^(BOOL finished) {
                      }];
+}
+
+#pragma mark Lead image container
+
+-(void)setupLeadImageContainer
+{
+    CGFloat leadGalleryHeight = self.view.bounds.size.height * 0.41;
+
+    self.leadImageContainer = [[[NSBundle mainBundle] loadNibNamed: @"LeadImageContainer"
+                                                             owner: nil
+                                                           options: nil] firstObject];
+    self.leadImageContainer.bridge = self.bridge;
+
+    // Because of autolayout weirdness with adding subview's to UIWebView's
+    // scrollview (which is done so we'll get scroll tracking and scaling
+    // when TOC appears for free), autoresizingMask is used - this also means
+    // we need to manually update leadImageContainer's frame on rotate - which
+    // is presently done in "updateHeightOfLeadImageContainerAndDiv".
+    self.leadImageContainer.autoresizingMask =
+    (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth);
+    
+    [self.webView.scrollView addSubview:self.leadImageContainer];
+    
+    self.leadImageContainer.frame =
+    (CGRect){{0, 0}, {self.webView.scrollView.frame.size.width, leadGalleryHeight}};
+
+// Note: will need the notification code which the toc used to use to set its images
+// as they were retrieved. Would need to show more than one image too. Presently this
+// is not using notification code so it will only work if the image is already in core data.
+// Presently this will also only show the image of the first article displayed. Will
+// need to update when article changes obviously.
+
+    [[NSNotificationCenter defaultCenter] addObserver: self.leadImageContainer
+                                             selector: @selector(showLeadImageForCurrentArticle)
+                                                 name: @"SectionImageRetrieved"
+                                               object: nil];
+    [self.leadImageContainer showLeadImageForCurrentArticle];
 }
 
 @end
