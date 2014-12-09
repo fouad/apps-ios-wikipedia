@@ -82,6 +82,9 @@
         //NSLog(@"JSON: %@", responseObject);
         [[MWNetworkActivityIndicatorManager sharedManager] pop];
 
+        // Convert the raw NSData response to a dictionary.
+        responseObject = [self dictionaryFromDataResponse:responseObject];
+
         // Clear any MCCMNC header - needed because manager is a singleton.
         [self removeMCCMNCHeaderFromRequestSerializer:manager.requestSerializer];
         
@@ -103,7 +106,7 @@
         [self.articleStore saveImageList];
 
         [self finishWithError: nil
-                  fetchedData: nil];
+                  fetchedData: responseObject];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -127,7 +130,7 @@
     @"noheadings": @"true",
     @"sections": @"all",
     @"page": title,
-    @"prop": @"sections|text|lastmodified|lastmodifiedby|languagecount|id|protection|editable|displaytitle",
+    @"prop": @"image|sections|text|lastmodified|lastmodifiedby|languagecount|id|protection|editable|displaytitle",
     }.mutableCopy;
 
     if ([SessionSingleton sharedInstance].sendUsageReports) {

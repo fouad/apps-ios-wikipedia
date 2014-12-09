@@ -7,7 +7,7 @@
 #import "Article.h"
 #import "ArticleFetcher.h"
 
-@class BottomMenuViewController;
+@class BottomMenuViewController, CommunicationBridge;
 
 @interface WebViewController : PullToRefreshViewController <UIWebViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, FetchFinishedDelegate>
 

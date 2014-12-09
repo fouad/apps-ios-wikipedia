@@ -7,4 +7,6 @@
 
 -(BOOL)isThreePointFiveInchScreen;
 
+-(BOOL)isPortrait;
+
 @end

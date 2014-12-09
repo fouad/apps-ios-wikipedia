@@ -42,7 +42,8 @@
         [self setDefaultSerializerForManagers:@[
             self.nearbyFetchManager,
             self.searchResultsFetchManager,
-            self.assetsFetchManager
+            self.assetsFetchManager,
+            self.articleFetchManager
         ]];
 
         //[self setupQMonitorLogging];

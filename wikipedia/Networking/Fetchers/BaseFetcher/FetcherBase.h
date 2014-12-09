@@ -46,5 +46,6 @@ typedef NS_ENUM(NSInteger, FetchFinalStatus) {
 // This is a quick way to check if the raw data response is potentially valid / contains
 // anything useful.
 -(BOOL)isDataResponseValid:(id)responseObject;
+-(NSDictionary *)dictionaryFromDataResponse:(id)responseObject;
 
 @end

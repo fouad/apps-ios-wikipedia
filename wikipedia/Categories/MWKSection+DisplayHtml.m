@@ -36,23 +36,43 @@
     
     NSInteger headingTagSize = [self getHeadingTagSize];
 
+
+NSString *leadImagePlaceHolder =
+        (self.sectionId == 0)
+        ? @"<div id='lead_image_div' style='height:0px;background-color:white;'><!-- PLACEHOLDER FOR TOP IMAGE VIEW --></div>"
+        : @"";
+
+
+// Temp hack!
+NSString *leadCss = @"";
+if (self.sectionId == 0) {
+    headingTagSize = 6;
+    title = @"";
+    leadCss = @" style='margin-bottom:0px;border-style:none;border-width:1px;border-color:red;' ";
+}
+
+
     return
         [NSString stringWithFormat:@"\
-<h%ld class=\"section_heading\" data-id=\"%ld\" id=\"%@\">\
+%@\
+<h%ld class=\"section_heading\" data-id=\"%ld\" id=\"%@\" %@>\
 %@\
 %@\
 </h%ld>\
             ",
+            leadImagePlaceHolder,
             (long)headingTagSize,
             (long)self.sectionId,
             self.anchor,
+            leadCss,
             title,
             pencilAnchor,
             (long)headingTagSize
         ];
 }
 
--(NSString*)getHeaderTitle{
+-(NSString *)getHeaderTitle
+{
     if (self.sectionId == 0) {
         if (self.article.displaytitle != nil && self.article.displaytitle.length > 0) {
             return self.article.displaytitle;
